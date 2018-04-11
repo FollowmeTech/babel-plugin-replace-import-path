@@ -31,10 +31,8 @@ Via `.babelrc` or babel-loader.
 
 ```
 {
-    libraryName: 'test',
-    libraryPath: 'lib',  // default: lib
-    stylePath: 'your-style-path', // defalut: undefined
-    needImportStyle: true       // default: false
+    src: 'test',
+    dest: 'lib'
 }
 ```
 
@@ -43,35 +41,26 @@ Via `.babelrc` or babel-loader.
 ```
 [
     {
-        libraryName: 'test1'
+        src: 'test1',
+        dest: 'lib1'
     },
     {
-        libraryName: 'test2'
+        src: 'test2',
+        dest: 'lib2'
     }
 ]
 ```
 
 ## Example
 
-**{ "libraryName": "test1" }**
+**{ "src": "test1/aaa", dest: "test2/bbb" }**
 
 ```js
-import { A } from 'test1';
+import { A } from 'test1/aaa';
 
 ↓ ↓ ↓ ↓ ↓ ↓
 
-var a = require('test1/lib/a');
-```
-
-**{ "libraryName": "test2", libraryPath: 'dist/my-library', stylePath: 'style1', needImportStyle: true }**
-
-```
-import { B } from 'test2';
-
-↓ ↓ ↓ ↓ ↓ ↓
-
-var b = require('test2/dist/my-library/b');
-require('test2/style1/b.css');
+var a = require('test2/bbb');
 ```
 
 ## LICENSE
