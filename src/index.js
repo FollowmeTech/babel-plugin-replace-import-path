@@ -6,8 +6,15 @@ function replaceImportPathPlugin (path, t, opts) {
     }
 
     const node = path.node;
-    if (node && node.source.value === src) {
-        node.source.value = dest;
+    if (!node || !src) {
+        return
+    }
+    if (typeof src === 'string') {
+        if (node.source.value === src) {
+            node.source.value = dest;
+        }
+    } else { // src is a regex
+        node.source.value = node.source.value.replace(src, dest)
     }
 }
 

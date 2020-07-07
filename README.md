@@ -45,8 +45,8 @@ Via `.babelrc` or babel-loader.
         dest: 'lib1'
     },
     {
-        src: 'test2',
-        dest: 'lib2'
+        src: /test\/(\w+)/,
+        dest: 'test/$1/src'
     }
 ]
 ```
