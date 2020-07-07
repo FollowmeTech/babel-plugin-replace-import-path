@@ -24,4 +24,15 @@ describe('replace import path', () => {
         const expected = 'import A from "testaaaa";';
         expect(expected === result.code).to.be.true;
     });
+
+    it('replace with regex', () => {
+        const result = babel.transform('import A from "test/dir"', {
+            plugins: [[replaceImportPath, {
+                src: /test\/(\w+)/,
+                dest: 'test/$1/src'
+            }]]
+        });
+        const expected = 'import A from "test/dir/src";';
+        expect(result.code).to.be.eq(expected);
+    });
 });
